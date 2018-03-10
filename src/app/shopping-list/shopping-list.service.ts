@@ -17,7 +17,16 @@ export class ShoppingListService{
 
     getIngredientsList()
     {
+        //passing a copy of the array
         return this.ingredients.slice();
+    }
+
+    addIngredients(ingredients:Ingredient[]){
+        
+        //ES6 spread operator used
+        this.ingredients.push(...ingredients);
+        this.ingredientsChanged.emit(this.ingredients.slice());
+
     }
 
 }
