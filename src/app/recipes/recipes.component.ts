@@ -12,9 +12,16 @@ export class RecipesComponent implements OnInit {
 
   selectedRecipe: Recipe;
 
-  constructor() { }
+  constructor(private recipeService:RecipeService) { }
 
   ngOnInit() {
+    
+    this.recipeService.recipeSelected.subscribe(      
+      //ES6 arrow function used here
+      (recipe:Recipe) => {
+          this.selectedRecipe = recipe;
+      }
+    );
   }
 
   onRecipeWasSelected(recipe)
