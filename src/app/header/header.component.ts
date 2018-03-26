@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter } from "@angular/core";
+import { DataStorageService } from "../shared/date-storage.service";
+import { Response} from "@angular/http";
 
 @Component(
     {
@@ -14,4 +16,15 @@ export class HeaderComponent{
     //     console.log('Event emitted: ' + feature);
     //     this.featuredEvent.emit(feature);
     // }
+
+    constructor(private dataStorageService: DataStorageService){}
+    
+    onSaveData(){
+        this.dataStorageService.storeRecipes().subscribe(
+            (response: Response) => {
+                console.log(response);
+            }
+        );
+    }
+
 }
