@@ -11,7 +11,9 @@ export class RecipeService{
 
     recipeChanged = new Subject<Recipe[]>();
 
-    constructor(private shoppingListService:ShoppingListService){}
+    constructor(private shoppingListService:ShoppingListService){
+        console.log("recipe service started");
+    }
 
     private recipes: Recipe[] = [
         new Recipe('Rolls',
@@ -52,6 +54,12 @@ export class RecipeService{
 
       deleteRecipe(index:number){
           this.recipes.splice(index,1);
+          this.recipeChanged.next(this.recipes.slice());
+      }
+
+      setRecipes(recipes){
+          this.recipes = recipes;
+          console.log("recipe updated");
           this.recipeChanged.next(this.recipes.slice());
       }
 
